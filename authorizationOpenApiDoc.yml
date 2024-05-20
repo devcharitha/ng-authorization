@@ -15,18 +15,7 @@ paths:
         content:
           application/vnd.api+json:
             schema:
-              type: object
-              properties:
-                emailId:
-                  type: string
-                  pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-                  example: dream123@gmail.com
-                password:
-                  type: string
-                  minLength: 6
-                  maxLength: 20
-                  pattern: '^(?=.*[a-z])(?=.*[A-Z]).{6,20}$'
-                  example: "Hkkdh99772*"
+               $ref: '#/components/schemas/ng-authorization'
              
       
       responses:
@@ -72,37 +61,16 @@ components:
       type: object
       description: user Object
       properties:
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              example: authorizationdetails
-            id:
-              type: string
-              example: "13623626723"
-            attributes:
-              type: object
-              properties:
-                emailId:
-                  type: string
-                  pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-                  example: 'user@example.com'
-                  description: emailid
-                accountNumber:
-                  type: array
-                  items:
-                    type: string
-                    example: ["9087529851", "9973521096"]
-                customerId:
-                  type: string
-                  example: "3687391"
-                password:
-                  type: string
-                  minLength: 6
-                  maxLength: 20
-                  pattern: '^(?=.*[a-z])(?=.*[A-Z]).{6,20}$'
-                  example: "Hkkdh99772*"
+        emailId:
+          type: string
+          pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+          example: 'user@example.com'
+        password:
+            type: string
+            minLength: 6
+            maxLength: 20
+            pattern: '^(?=.*[a-z])(?=.*[A-Z]).{6,20}$'
+            example: "Hkkdh99772*"
                   
     UnauthorizedError:
       type: object
