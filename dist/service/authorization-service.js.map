@@ -1,0 +1,1 @@
+{"version":3,"file":"authorization-service.js","sourceRoot":"src/","sources":["service/authorization-service.ts"],"names":[],"mappings":";;;AAGA,MAAa,oBAAoB;IACvB,uBAAuB,CAA0B;IAEzD,YAAY,uBAAgD;QAC1D,IAAI,CAAC,uBAAuB,GAAG,uBAAuB,CAAC;IACzD,CAAC;IAED,KAAK,CAAC,qBAAqB,CAAC,KAAa;QACvC,OAAO,MAAM,IAAI,CAAC,uBAAuB,CAAC,qBAAqB,CAAC,KAAK,CAAC,CAAC;IACzE,CAAC;CACF;AAVD,oDAUC"}
