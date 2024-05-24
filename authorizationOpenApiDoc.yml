@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: Authorization
+  description: sends data for authorized user
+paths: 
+  /authorization:
+    post:
+      summary: Send Token
+      description: Authenticate user using email and password, return JWT token
+      tags:
+        - Authorization Journey
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+               $ref: '#/components/schemas/ng-authorization'
+             
+      
+      responses:
+        200:
+          description: Authorized successfully
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+                  typeofToken: 
+                    type: string
+                    example: bearer
+                  expiresIn: 
+                    type: number
+                    example: 6000 
+                  scope: 
+                    type: string
+                    example: read admin write
+                    description: Authorization token
+                    
+        401:
+          description: Unauthorized
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError' 
+                
+        404:
+          description: User not found
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'        
+     
+        
+components:
+  schemas:
+    ng-authorization:
+      type: object
+      description: user Object
+      properties:
+        emailId:
+          type: string
+          pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+          example: 'user@example.com'
+        password:
+            type: string
+            minLength: 6
+            maxLength: 20
+            pattern: '^(?=.*[a-z])(?=.*[A-Z]).{6,20}$'
+            example: "Hkkdh99772*"
+                  
+    UnauthorizedError:
+      type: object
+      properties:
+        errors:
+            type: array
+            items:
+              type: object
+              properties:
+                details:
+                  type: string
+                  example: 'Unauthorized'
+                status:
+                  type: integer
+                  example: 401   
+                  
+    NotFoundError:
+      type: object
+      properties:
+        errors:
+            type: array
+            items:
+              type: object
+              properties:
+                details:
+                  type: string
+                  example: 'Not found'
+                status:
+                  type: integer
+                  example: 404
+              
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/CHARITHADASARI05/ng-authorization/1.0
